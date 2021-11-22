@@ -59,7 +59,7 @@ def main():
                 filename = file[:dot_index]
 
             if is_valid(filename) is False:
-                print("Would you want to delete: {}? [y/n]".format(filename))
+                print("Would you want to delete: {}? [y/n]".format(os.path.join(root, file)))
                 if (input() == "y"):
                     print("Deleted: {}".format(file))
                     os.remove(os.path.join(root, file))
