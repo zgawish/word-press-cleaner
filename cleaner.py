@@ -8,6 +8,13 @@ WORDS = json.load(f)
 # import enchant
 f.close()
 
+f = open('cached.json')
+# returns JSON object as
+# a dictionary
+CACHED = json.load(f)
+# import enchant
+f.close()
+
 
 
 def find_last(file):
@@ -18,7 +25,14 @@ def find_last(file):
 
 
 def is_mumbo(filename):
-    pass
+    valid = is_valid(filename)
+    is_lower = filename.islower()
+    in_cached = filename in CACHED
+
+    if valid is False and is_lower is True and in_cached is False:
+        return True
+    return False
+
 
 
 def is_valid(filename):
@@ -66,14 +80,23 @@ def main():
                 file_type = file[dot_index:]
 
             print(file_type)
-            if is_valid(filename) is False and file_type == ".php":
-                print("Would you want to delete: {}? [y/n]".format(os.path.join(root, file)))
-                if (input() == "y"):
+            if is_mumbo(filename) and file_type == ".php":
+                print("Would you want to delete: {}? [y/n/q]".format(os.path.join(root, file)))
+                usr = input()
+                if (usr == "y"):
                     print("Deleted: {}".format(file))
                     os.remove(os.path.join(root, file))
+                elif (usr == "q"):
+                    with open('cached.json', 'w') as cached:
+                        json.dump(CACHED, cached)
+                    exit(0)
+                else:
+                    CACHED[filename] = 1
             # filename = file.split('.')[0]
             
             # print(os.path.join(root, file))
+    with open('cached.json', 'w') as cached:
+        json.dump(CACHED, cached)
 
 if __name__ == "__main__":
     main()
