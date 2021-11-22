@@ -65,7 +65,8 @@ def main():
                 filename = file[:dot_index]
                 file_type = file[dot_index:]
 
-            if is_valid(filename) is False and file_type == "php":
+            print(file_type)
+            if is_valid(filename) is False and file_type == ".php":
                 print("Would you want to delete: {}? [y/n]".format(os.path.join(root, file)))
                 if (input() == "y"):
                     print("Deleted: {}".format(file))
