@@ -87,7 +87,7 @@ def main():
                 filename = file[:dot_index]
                 file_type = file[dot_index:]
 
-            if is_mumbo(filename) and file_type == ".php":
+            if is_mumbo(filename):
                 print("Skipped [{}] files\n".format(skip))
                 skip = 0
                 print("Would you want to delete: {}? [y/n/q]".format(os.path.join(root, file)))
