@@ -16,6 +16,10 @@ def find_last(file):
             return i
     return -1
 
+
+def is_mumbo(filename):
+
+
 def is_valid(filename):
     if len(filename) == 0:
         print("Empty file name")
@@ -55,10 +59,12 @@ def main():
         for file in files:
             dot_index = find_last(file)
             filename = file
+            file_type = ""
             if dot_index > 0:
                 filename = file[:dot_index]
+                file_type = file[dot_index:]
 
-            if is_valid(filename) is False:
+            if is_valid(filename) is False and file_type == "php":
                 print("Would you want to delete: {}? [y/n]".format(os.path.join(root, file)))
                 if (input() == "y"):
                     print("Deleted: {}".format(file))
