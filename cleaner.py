@@ -18,6 +18,7 @@ def find_last(file):
 
 
 def is_mumbo(filename):
+    pass
 
 
 def is_valid(filename):
