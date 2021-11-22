@@ -1,5 +1,14 @@
 import os
-import enchant
+import json
+
+f = open('words_dictionary.json')
+# returns JSON object as
+# a dictionary
+WORDS = json.load(f)
+# import enchant
+f.close()
+
+
 
 def find_last(file):
     for i in range(len(file) - 1, -1, -1):
@@ -8,33 +17,37 @@ def find_last(file):
     return -1
 
 def is_valid(filename):
-    d = enchant.Dict("en_US") 
-    if d.check(filename) is True:
+    if len(filename) == 0:
+        print("Empty file name")
+        return False
+    if filename.lower() in WORDS:
         return True
     else:
         dash_parts = filename.split('-')
         under_parts = filename.split('_')
         dot_parts = filename.split('.')
         
-        if len(dash_parts) > 0:
+        if len(dash_parts) > 1:
             for part in dash_parts:
-                if d.check(part) is True:
+                if part.lower() in WORDS:
                     return True
         
-        if len(under_parts) > 0:
+        if len(under_parts) > 1:
             for part in under_parts:
-                if d.check(part) is True:
+                if part.lower() in WORDS:
                     return True
         
-        if len(dot_parts) > 0:
+        if len(dot_parts) > 1:
             for part in dot_parts:
-                if d.check(part) is True:
+                if part.lower() in WORDS:
                     return True
         
         return False
 
 def main():
-    directory = "./"
+    directory = input("Enter a Directory: ")
+    if len(directory) == 0:
+        directory = "./"
 
     for root, subdirectories, files in os.walk(directory):
         # for subdirectory in subdirectories:

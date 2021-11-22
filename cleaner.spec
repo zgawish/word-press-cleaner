@@ -5,7 +5,7 @@ block_cipher = None
 
 
 a = Analysis(['cleaner.py'],
-             pathex=['../opt/anaconda3/lib/python3.7/site-packages'],
+             pathex=[],
              binaries=[],
              datas=[],
              hiddenimports=[],
