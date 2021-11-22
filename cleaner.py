@@ -36,7 +36,6 @@ def is_mumbo(filename):
     if filename.find('.') != -1:
         has_sep = True
 
-    print(has_sep)
     if valid is False and is_lower is True and in_cached is False and has_sep is False:
         return True
     return False
