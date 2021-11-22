@@ -31,12 +31,12 @@ def is_mumbo(filename):
     has_sep = False
     if filename.find('-') != -1:
         has_sep = True
-    if filename.find('_') != 1:
+    if filename.find('_') != -1:
         has_sep = True
-    if filename.find('.') != 1:
+    if filename.find('.') != -1:
         has_sep = True
 
-
+    print(has_sep)
     if valid is False and is_lower is True and in_cached is False and has_sep is False:
         return True
     return False
