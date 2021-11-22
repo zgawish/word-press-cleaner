@@ -76,6 +76,7 @@ def main():
     if len(directory) == 0:
         directory = "./"
 
+    skip = 0
     for root, subdirectories, files in os.walk(directory):
         # for subdirectory in subdirectories:
         #     print(os.path.join(root, subdirectory))
@@ -87,8 +88,9 @@ def main():
                 filename = file[:dot_index]
                 file_type = file[dot_index:]
 
-            print(file_type)
             if is_mumbo(filename) and file_type == ".php":
+                print("Skipped [{}] files\n".format(skip))
+                skip = 0
                 print("Would you want to delete: {}? [y/n/q]".format(os.path.join(root, file)))
                 usr = input()
                 if (usr == "y"):
@@ -100,6 +102,8 @@ def main():
                     exit(0)
                 else:
                     CACHED[filename] = 1
+            else:
+                skip += 1
             # filename = file.split('.')[0]
             
             # print(os.path.join(root, file))
