@@ -28,8 +28,16 @@ def is_mumbo(filename):
     valid = is_valid(filename)
     is_lower = filename.islower()
     in_cached = filename in CACHED
+    has_sep = False
+    if filename.find('-') != -1:
+        has_sep = True
+    if filename.find('_') != 1:
+        has_sep = True
+    if filename.find('.') != 1:
+        has_sep = True
 
-    if valid is False and is_lower is True and in_cached is False:
+
+    if valid is False and is_lower is True and in_cached is False and has_sep is False:
         return True
     return False
 
