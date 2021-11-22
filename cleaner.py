@@ -109,6 +109,7 @@ def main():
             # print(os.path.join(root, file))
     with open('cached.json', 'w') as cached:
         json.dump(CACHED, cached)
+    print(str(skip))
 
 if __name__ == "__main__":
     main()
