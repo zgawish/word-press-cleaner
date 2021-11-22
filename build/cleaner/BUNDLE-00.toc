@@ -1,0 +1,1 @@
+([('cleaner', '/Users/ziyad/word-press-cleaner/dist/cleaner', 'EXECUTABLE')],)
